@@ -1,3 +1,3 @@
 export default {
-    authServer : "http://localhost:8080"
+    portfolioServer : "http://localhost:8080"
 };
