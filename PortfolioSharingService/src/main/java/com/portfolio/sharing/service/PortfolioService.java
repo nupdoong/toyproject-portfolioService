@@ -14,9 +14,6 @@ public interface PortfolioService {
 
 	void constructPortfolio(RequestPortfolio portfolio);
 	
-	PortfolioData findByUsername(String username) throws NotFoundException;
-
-	void MyPortfolioList(String username) throws NotFoundException;
 	
-	public List<PortfolioData> list() throws NotFoundException;
+	public List<RequestPortfolio> getPortfoliolist(String username) throws NotFoundException;
 }

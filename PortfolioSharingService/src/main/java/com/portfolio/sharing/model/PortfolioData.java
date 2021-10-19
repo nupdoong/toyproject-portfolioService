@@ -22,21 +22,20 @@ public class PortfolioData {
     @GeneratedValue
     private int seq;
 
-    @Column(unique = true)
     @NotBlank
     private String username;
     @NotBlank
     private String ticker;
-    @NotBlank
+    @NotNull
     private double avgprice;
-    @NotBlank
+    @NotNull
     private int stockEA;
     
     public PortfolioData() {
     }
 
     @Builder
-    public PortfolioData(@NotBlank String username, @NotBlank String ticker, @NotBlank double avgprice, @NotBlank int stockEA) {
+    public PortfolioData(@NotBlank String username, @NotBlank String ticker, @NotNull double avgprice, @NotNull int stockEA) {
         this.username = username;
         this.ticker = ticker;
         this.avgprice = avgprice;

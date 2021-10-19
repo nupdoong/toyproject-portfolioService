@@ -1,5 +1,6 @@
 package com.portfolio.sharing.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Override
     @Transactional
     public void constructPortfolio(RequestPortfolio portfolio) {
+		
 		PortfolioData portfolioData = new PortfolioData();
         portfolioData.setUsername(portfolio.getUsername());
         portfolioData.setTicker(portfolio.getTicker());
@@ -31,23 +33,23 @@ public class PortfolioServiceImpl implements PortfolioService {
         portfolioRepository.save(portfolioData);
     }
 
-	@Override
-	public PortfolioData findByUsername(String username) throws NotFoundException {
-		PortfolioData portfolioData = portfolioRepository.findByUsername(username);
-		if(portfolioData == null) throw new NotFoundException("포트폴리오가 없습니다.");
-		return null;
-	}
 
 	@Override
-	public void MyPortfolioList(String username) throws NotFoundException {
-		
-		
-	}
-
-	@Override
-	public List<PortfolioData> list() throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public List<RequestPortfolio> getPortfoliolist(String username) throws NotFoundException {
+		List<PortfolioData> portfolios = portfolioRepository.findByUsername(username);
+		if(portfolios == null) throw new NotFoundException("포트폴리오가 없습니다.");
+		List<RequestPortfolio> portfolioList = new ArrayList<>();
+		for(PortfolioData portfolio : portfolios) {
+			RequestPortfolio requestPortfolio = RequestPortfolio.builder()
+					.username(portfolio.getUsername())
+					.ticker(portfolio.getTicker())
+					.avgprice(portfolio.getAvgprice())
+					.stockEA(portfolio.getStockEA())
+					.build();
+			portfolioList.add(requestPortfolio);
+		}
+		return portfolioList;
 	}
 	
 	
