@@ -12,8 +12,19 @@ import javassist.NotFoundException;
 @Service
 public interface PortfolioService {
 
-	void constructPortfolio(RequestPortfolio portfolio);
+	public PortfolioData constructPortfolio(RequestPortfolio portfolio);
 	
 	
 	public List<RequestPortfolio> getPortfoliolist(String username) throws NotFoundException;
+
+
+	RequestPortfolio changePortfolio(PortfolioData portfolioData, RequestPortfolio portfolio);
+
+
+	RequestPortfolio mylistDetail(String username, String ticker);
+	
+	RequestPortfolio deletePortfolio(String username, String ticker);
+
+
+	PortfolioData findByUsernameAndTicker(String username, String ticker);
 }

@@ -23,7 +23,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	@Override
     @Transactional
-    public void constructPortfolio(RequestPortfolio portfolio) {
+    public PortfolioData constructPortfolio(RequestPortfolio portfolio) {
 		
 		PortfolioData portfolioData = new PortfolioData();
         portfolioData.setUsername(portfolio.getUsername());
@@ -31,6 +31,19 @@ public class PortfolioServiceImpl implements PortfolioService {
         portfolioData.setAvgprice(portfolio.getAvgprice());
         portfolioData.setStockEA(portfolio.getStockEA());
         portfolioRepository.save(portfolioData);
+        return portfolioData;
+    }
+	
+	@Override
+    @Transactional
+    public RequestPortfolio changePortfolio(PortfolioData portfolioData, RequestPortfolio portfolio) {
+		
+        portfolioData.setUsername(portfolio.getUsername());
+        portfolioData.setTicker(portfolio.getTicker());
+        portfolioData.setAvgprice(portfolio.getAvgprice());
+        portfolioData.setStockEA(portfolio.getStockEA());
+        portfolioRepository.save(portfolioData);
+        return portfolio;
     }
 
 
@@ -50,6 +63,32 @@ public class PortfolioServiceImpl implements PortfolioService {
 			portfolioList.add(requestPortfolio);
 		}
 		return portfolioList;
+	}
+
+	@Override
+	@Transactional
+	public RequestPortfolio mylistDetail(String username, String ticker) {
+		PortfolioData portfolio = portfolioRepository.findByUsernameAndTicker(username, ticker);
+		RequestPortfolio requestPortfolio = RequestPortfolio.builder()
+				.username(portfolio.getUsername())
+				.ticker(portfolio.getTicker())
+				.avgprice(portfolio.getAvgprice())
+				.stockEA(portfolio.getStockEA())
+				.build();
+		return requestPortfolio;
+	}
+
+	@Override
+	@Transactional
+	public RequestPortfolio deletePortfolio(String username, String ticker) {
+		portfolioRepository.deleteByUsernameAndTicker(username, ticker);
+		return null;
+	}
+
+	@Override
+	public PortfolioData findByUsernameAndTicker(String username, String ticker) {
+		PortfolioData portfolio = portfolioRepository.findByUsernameAndTicker(username, ticker);
+		return portfolio;
 	}
 	
 	

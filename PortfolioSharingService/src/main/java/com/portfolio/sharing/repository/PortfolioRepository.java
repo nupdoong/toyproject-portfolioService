@@ -11,4 +11,8 @@ public interface PortfolioRepository extends CrudRepository<PortfolioData, Long>
 	
 	List<PortfolioData> findByUsername(String username);
 
+	PortfolioData findByUsernameAndTicker(String username, String ticker);
+
+	void deleteByUsernameAndTicker(String username, String ticker);
+
 }

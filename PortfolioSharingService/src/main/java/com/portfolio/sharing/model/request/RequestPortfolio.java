@@ -1,6 +1,7 @@
 package com.portfolio.sharing.model.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.portfolio.sharing.model.PortfolioData;
 import com.portfolio.sharing.model.PortfolioData.PortfolioDataBuilder;
@@ -32,7 +33,7 @@ public class RequestPortfolio {
     }
     
     @Builder
-    public RequestPortfolio(@NotBlank String username, @NotBlank String ticker, @NotBlank double avgprice, @NotBlank int stockEA) {
+    public RequestPortfolio(@NotBlank String username, @NotBlank String ticker, @NotNull double avgprice, @NotNull int stockEA) {
         this.username = username;
         this.ticker = ticker;
         this.avgprice = avgprice;

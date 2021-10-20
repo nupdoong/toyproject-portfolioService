@@ -44,6 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/portfolio/construct").permitAll()
                 .antMatchers("/portfolio/mylist").permitAll()
+                .antMatchers("/portfolio/mylist/**").permitAll()
+                .antMatchers("/portfolio/mylist/**/edit").permitAll()
                 .antMatchers("/test/user").hasRole("USER")
                 .antMatchers("/test/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();
