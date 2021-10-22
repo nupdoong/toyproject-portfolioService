@@ -23,7 +23,7 @@ const SignUpContainer = () => {
 
   const handleSignUp = (signUpRequest : RequestSignUp) => {
     console.log("하위^^");
-    Axios.post(Endpoint.authServer+'/user/signup',
+    Axios.post(Endpoint.portfolioServer+'/user/signup',
     {
       username : signUpRequest.username,
       password : signUpRequest.password,
@@ -35,7 +35,7 @@ const SignUpContainer = () => {
     .then(data=> {
       if(data.response === "success"){
         alert("회원가입이 완료됐습니다.");
-        Axios.post(Endpoint.authServer+'/user/verify', {name : signUpRequest.name})
+        Axios.post(Endpoint.portfolioServer+'/user/verify', {name : signUpRequest.name})
         history.push("/");
       }
       console.log(data);

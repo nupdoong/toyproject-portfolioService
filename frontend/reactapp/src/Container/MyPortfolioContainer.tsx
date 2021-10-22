@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import qs from 'query-string';
 import Axios from 'axios';
 
-const MainContainer = () => {
+const MyPortfolioContainer = () => {
     
     return(
         <div>
@@ -13,4 +13,4 @@ const MainContainer = () => {
 
 }
 
-export default MainContainer;
+export default MyPortfolioContainer;
