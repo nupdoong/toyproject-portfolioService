@@ -10,7 +10,7 @@ type LoginPresenterProps = {
   password: string;
   setPassword: Function;
   doLogin: Function;
-  doTest: Function;
+  doSignUp: Function;
   signUpByNaver: Function;
 };
 
@@ -32,13 +32,13 @@ const LoginPresenter = ({
   setUsername,
   setPassword,
   doLogin,
-  doTest,
+  doSignUp,
   signUpByNaver,
 }: LoginPresenterProps) => {
   return (
     <div className={"background"}>
       <Form
-        className={"main-container"}
+        className={"login-container"}
         onFinish={() => {
           doLogin(username, password);
         }}
@@ -73,7 +73,7 @@ const LoginPresenter = ({
                 marginRight: "10px",
               }}
               onClick={(e) => {
-                doTest();
+                doSignUp();
               }}
             >
               회원가입

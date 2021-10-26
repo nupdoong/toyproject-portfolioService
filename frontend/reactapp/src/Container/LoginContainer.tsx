@@ -37,7 +37,7 @@ const LoginContainer = () => {
       });
   };
 
-  const doTest = () => {
+  const doSignUp = () => {
     history.push("/signup");
   };
 
@@ -66,7 +66,7 @@ const LoginContainer = () => {
         password={password}
         setPassword={setPassword}
         doLogin={doLogin}
-        doTest={doTest}
+        doSignUp={doSignUp}
         signUpByNaver={signUpByNaver}
       />
     </div>

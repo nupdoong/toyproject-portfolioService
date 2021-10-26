@@ -1,16 +1,41 @@
-import * as React from 'react';
-import {useEffect} from 'react';
-import styled from 'styled-components';
-import qs from 'query-string';
-import Axios from 'axios';
+import * as React from "react";
+import { useState } from "react";
+import MainPresenter from "../Presenter/Main/MainPresenter";
+import axios from "axios";
+import cookies from "js-cookie";
+import Endpoint from "../config/Endpoint";
+import { useHistory } from "react-router";
 
 const MainContainer = () => {
+    const history = useHistory();
+
+    const toMyPortfolio = () => {
+        history.push("/myportfolio");
+    };
+
+    const toLeaderBoard = () => {
+        history.push("/leaderboard");
+    };
+
+    const toPublishList = () => {
+        history.push("/publishlist");
+    };
     
+    const toStockPrice = () => {
+        history.push("/stockprice");
+    };
+
     return(
         <div>
-        </div>
+        <MainPresenter
+          toMyPortfolio={toMyPortfolio}
+          toLeaderBoard={toLeaderBoard}
+          toPublishList={toPublishList}
+          toStockPrice={toStockPrice}
+        />
+      </div>
     )
 
-}
+};
 
 export default MainContainer;
