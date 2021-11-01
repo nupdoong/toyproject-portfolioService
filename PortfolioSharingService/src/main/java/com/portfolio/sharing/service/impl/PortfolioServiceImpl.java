@@ -86,6 +86,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
+	@Transactional
 	public PortfolioData findByUsernameAndTicker(String username, String ticker) {
 		PortfolioData portfolio = portfolioRepository.findByUsernameAndTicker(username, ticker);
 		return portfolio;

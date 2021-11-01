@@ -41,12 +41,18 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional
-    public void signUpUser(Member member) {
-        String password = member.getPassword();
+    public void signUpUser(RequestSignupData requestSignupData) {
+    	Member newMember = new Member();
+    	
+        String password = requestSignupData.getPassword();
         String salt = saltUtil.genSalt();
-        member.setSalt(new Salt(salt));
-        member.setPassword(saltUtil.encodePassword(salt,password));
-        memberRepository.save(member);
+        newMember.setUsername(requestSignupData.getUsername());
+        newMember.setName(requestSignupData.getName());
+        newMember.setAddress(requestSignupData.getAddress());
+        newMember.setEmail(requestSignupData.getEmail());
+        newMember.setSalt(new Salt(salt));
+        newMember.setPassword(saltUtil.encodePassword(salt,password));
+        memberRepository.save(newMember);
     }
 
     @Override

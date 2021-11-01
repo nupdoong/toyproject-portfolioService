@@ -1,16 +1,19 @@
 package com.portfolio.security.service;
 
+import org.springframework.stereotype.Service;
+
 import com.portfolio.security.config.UserRole;
 import com.portfolio.security.model.Member;
 import com.portfolio.security.model.Request.RequestSignupData;
 import com.portfolio.security.model.Request.RequestSocialData;
 import javassist.NotFoundException;
 
+@Service
 public interface AuthService {
 
     final String REDIS_CHANGE_PASSWORD_PREFIX="CPW";
 
-    void signUpUser(Member member);
+    void signUpUser(RequestSignupData requestSignupData);
 
     void signUpSocialUser(RequestSocialData member);
 

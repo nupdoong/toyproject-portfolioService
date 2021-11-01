@@ -2,6 +2,7 @@ package com.portfolio.security.controller;
 import com.portfolio.security.model.Request.RequestChangePassword1;
 import com.portfolio.security.model.Request.RequestChangePassword2;
 import com.portfolio.security.model.Request.RequestLoginUser;
+import com.portfolio.security.model.Request.RequestSignupData;
 import com.portfolio.security.model.Request.RequestVerifyEmail;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class MemberController {
     private RedisUtil redisUtil;
     
     @PostMapping("/signup")
-    public Response signUpUser(@RequestBody Member member) {
+    public Response signUpUser(@RequestBody RequestSignupData requestSignupData) {
         try {
-            authService.signUpUser(member);
+            authService.signUpUser(requestSignupData);
             return new Response("success", "회원가입을 성공적으로 완료했습니다.", null);
         } catch (Exception e) {
             return new Response("error", "회원가입을 하는 도중 오류가 발생했습니다.", null);

@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.portfolio.security.service.AuthService;
+import com.portfolio.security.service.EmailService;
 import com.portfolio.security.service.impl.AuthServiceImpl;
+import com.portfolio.security.service.impl.EmailServiceImpl;
 import com.portfolio.sharing.service.PortfolioService;
 import com.portfolio.sharing.service.impl.PortfolioServiceImpl;
 
@@ -17,6 +19,10 @@ public class PortfolioSharingServiceConfiguration {
 	@Bean
 	public AuthService authService() {
 		return new AuthServiceImpl();
+	}
+	@Bean
+	public EmailService emailService() {
+		return new EmailServiceImpl();
 	}
 	@Bean
 	public PortfolioService portfolioService() {
