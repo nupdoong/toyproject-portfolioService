@@ -6,7 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.portfolio.sharing.model.request.RequestPortfolio;
 import com.portfolio.sharing.repository.PortfolioRepository;
@@ -16,6 +16,7 @@ import javassist.NotFoundException;
 
 import com.portfolio.sharing.model.PortfolioData;
 
+@Service
 public class PortfolioServiceImpl implements PortfolioService {
 
 	@Autowired
