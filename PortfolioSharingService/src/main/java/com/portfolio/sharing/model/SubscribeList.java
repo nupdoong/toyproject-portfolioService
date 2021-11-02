@@ -25,6 +25,10 @@ public class SubscribeList {
     @NotBlank
     private String publisher;
     
+    public SubscribeList() {
+    	
+    }
+    
     @Builder
     public SubscribeList(@NotBlank String subscriber, @NotBlank String publisher) {
     	this.subscriber = subscriber;

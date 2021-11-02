@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.portfolio.sharing.model.PortfolioData;
+import com.portfolio.sharing.model.SubscribeList;
 import com.portfolio.sharing.model.request.RequestPortfolio;
+import com.portfolio.sharing.model.request.RequestPublisher;
 
 import javassist.NotFoundException;
 
@@ -23,4 +25,10 @@ public interface PortfolioService {
 	RequestPortfolio deletePortfolio(String username, String ticker);
 
 	PortfolioData findByUsernameAndTicker(String username, String ticker);
+	
+	public SubscribeList addPublisher(RequestPublisher publisherData);
+	
+	public List<RequestPublisher> getPublisherList(String subscriber) throws NotFoundException;
+
+	RequestPublisher deletePublisher(String subscriber, String publisher);
 }

@@ -9,18 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.portfolio.sharing.model.request.RequestPortfolio;
+import com.portfolio.sharing.model.request.RequestPublisher;
 import com.portfolio.sharing.repository.PortfolioRepository;
+import com.portfolio.sharing.repository.SubscribeRepository;
 import com.portfolio.sharing.service.PortfolioService;
 
 import javassist.NotFoundException;
 
 import com.portfolio.sharing.model.PortfolioData;
+import com.portfolio.sharing.model.SubscribeList;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
 
 	@Autowired
     private PortfolioRepository portfolioRepository;
+	
+	@Autowired
+	private SubscribeRepository subscribeRepository;
 	
 	@Override
     @Transactional
@@ -92,6 +98,37 @@ public class PortfolioServiceImpl implements PortfolioService {
 		PortfolioData portfolio = portfolioRepository.findByUsernameAndTicker(username, ticker);
 		return portfolio;
 	}
-	
+
+	@Override
+	@Transactional
+	public SubscribeList addPublisher(RequestPublisher publisherData) {
+		SubscribeList subscribe = new SubscribeList();
+		subscribe.setPublisher(publisherData.getSubscriber());
+		subscribe.setSubscriber(publisherData.getSubscriber());
+		subscribeRepository.save(subscribe);
+		return subscribe;
+	}
+
+	@Override
+	@Transactional
+	public List<RequestPublisher> getPublisherList(String subscriber) throws NotFoundException {
+		List<SubscribeList> publisherList = subscribeRepository.findBySubscriber(subscriber);
+		if(publisherList == null) throw new NotFoundException("구독 중인 사용가 없습니다.");
+		List<RequestPublisher> publishingList = new ArrayList<>();
+		for(SubscribeList publisherData : publisherList) {
+			RequestPublisher requestPublisher = RequestPublisher.builder()
+					.subscriber(publisherData.getSubscriber())
+					.publisher(publisherData.getPublisher())
+					.build();
+			publishingList.add(requestPublisher);
+		}
+		return publishingList;
+	}
+
+	@Override
+	public RequestPublisher deletePublisher(String subscriber, String publisher) {
+		subscribeRepository.deleteBySubscriberAndPublisher(subscriber, publisher);
+		return null;
+	}
 	
 }

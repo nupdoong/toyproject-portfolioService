@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.sharing.model.PortfolioData;
+import com.portfolio.sharing.model.SubscribeList;
 import com.portfolio.sharing.model.request.RequestPortfolio;
+import com.portfolio.sharing.model.request.RequestPublisher;
 import com.portfolio.sharing.service.PortfolioService;
 
 @RestController
@@ -26,7 +28,7 @@ public class PortfolioController {
 	@Autowired
     private PortfolioService portfolioService;
 	
-	@PostMapping("/construct")
+	@PostMapping("/construction")
     public ResponseEntity<PortfolioData> constructPortfolio(@Valid @RequestBody RequestPortfolio portfolio) {
 		try {
 			return ResponseEntity.ok().body(
@@ -104,5 +106,70 @@ public class PortfolioController {
 			return null;
 		}
     }
+	
+	@GetMapping("/subscribelist")
+	public ResponseEntity<List<RequestPublisher>> mySubscribeList(@RequestParam("username") String subscriber){
+		try {
+			return ResponseEntity.ok()
+					.body(
+							portfolioService.getPublisherList(subscriber)
+							);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@PostMapping("/subscribelist")
+	public ResponseEntity<SubscribeList> addPublisher(@Valid @RequestBody RequestPublisher subscribeData){
+		try {
+			return ResponseEntity.ok().body(
+					portfolioService.addPublisher(subscribeData)
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@GetMapping("/subscribelist/{publisher}")
+	public ResponseEntity<List<RequestPortfolio>> findPortfolioListByPublisher(@RequestParam("publisher") String publisher) {
+		try {
+			return ResponseEntity.ok()
+					.body(
+							portfolioService.getPortfoliolist(publisher)
+							);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@DeleteMapping("/subscribelist/{publisher}")
+	public ResponseEntity<RequestPublisher> deletePublisher(@RequestParam("username") String subscriber, @PathVariable String publisher) {
+		try {
+			return ResponseEntity.ok()
+					.body(
+							portfolioService.deletePublisher(subscriber, publisher)
+							);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
+	
+	@GetMapping("/subscribelist/{publisher}/{ticker}")
+	public ResponseEntity<RequestPortfolio> publisherPortfolioDetail(@RequestParam("publisher") String publisher, @PathVariable String ticker) {
+		try {
+			return ResponseEntity.ok()
+					.body(
+							portfolioService.mylistDetail(publisher, ticker)
+							);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
