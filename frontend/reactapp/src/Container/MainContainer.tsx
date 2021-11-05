@@ -10,9 +10,10 @@ const MainContainer = () => {
     const history = useHistory();
 
     const toMyPortfolio = () => {
-        history.push("/myportfolio");
+        history.push("/signup");
     };
 
+    /*
     const toLeaderBoard = () => {
         history.push("/leaderboard");
     };
@@ -24,14 +25,15 @@ const MainContainer = () => {
     const toStockPrice = () => {
         history.push("/stockprice");
     };
+    */
 
     return(
         <div>
         <MainPresenter
           toMyPortfolio={toMyPortfolio}
-          toLeaderBoard={toLeaderBoard}
-          toPublishList={toPublishList}
-          toStockPrice={toStockPrice}
+          //toLeaderBoard={toLeaderBoard}
+          //toPublishList={toPublishList}
+          //toStockPrice={toStockPrice}
         />
       </div>
     )

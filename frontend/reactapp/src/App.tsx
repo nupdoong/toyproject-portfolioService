@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Route path="/" exact component={MainPage}/>
-        <Route path="/lgoin" exact component={LoginPage}/>
+        <Route path="/" exact component={LoginPage}/>
         <Route path="/signup" component={SignUpPage}/>
+        <Route path="/main" exact component={MainPage}/>
         <Route path="/login/oauth" component={SocialLoginingPage}/>
         <Route path="/myportfolio" component={MyPortfolioPage}/>
       </Router>

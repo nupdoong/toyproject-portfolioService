@@ -36,7 +36,7 @@ const SignUpContainer = () => {
       if(data.response === "success"){
         alert("회원가입이 완료됐습니다.");
         Axios.post(Endpoint.portfolioServer+'/user/verify', {name : signUpRequest.name})
-        history.push("/login");
+        history.push("/");
       }
       console.log(data);
     })

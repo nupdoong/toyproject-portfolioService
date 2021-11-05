@@ -29,6 +29,7 @@ const LoginContainer = () => {
       .then((data) => {
         if (data.response === "success") {
           alert("로그인 성공");
+          history.push("/main");
         }
       })
       .catch((error) => {
