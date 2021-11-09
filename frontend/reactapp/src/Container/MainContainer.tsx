@@ -12,28 +12,15 @@ const MainContainer = () => {
     const toMyPortfolio = () => {
         history.push("/signup");
     };
-
-    /*
-    const toLeaderBoard = () => {
-        history.push("/leaderboard");
-    };
-
-    const toPublishList = () => {
-        history.push("/publishlist");
+    const toStockPrice = () => {
+        history.push("/stock");
     };
     
-    const toStockPrice = () => {
-        history.push("/stockprice");
-    };
-    */
-
     return(
         <div>
         <MainPresenter
           toMyPortfolio={toMyPortfolio}
-          //toLeaderBoard={toLeaderBoard}
-          //toPublishList={toPublishList}
-          //toStockPrice={toStockPrice}
+          toStockPrice={toStockPrice}
         />
       </div>
     )

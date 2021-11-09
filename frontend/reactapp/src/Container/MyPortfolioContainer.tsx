@@ -19,7 +19,7 @@ const MyPortfolioContainer = () => {
     };
 
     const getMyPortfolioList = () => {
-        useEffect(() => {
+        /*useEffect(() => {
             axios.get(
                 Endpoint.portfolioServer+'/portfolio/mylist', {
                     params: {
@@ -32,12 +32,13 @@ const MyPortfolioContainer = () => {
                 setMylist(response.data.data);
             })
             .catch(function (error){
-
+                console.log(error)
             })
             .then(function(){
 
             });
         }, []);
+        */
     };
 
     return(

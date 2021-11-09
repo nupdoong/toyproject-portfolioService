@@ -12,17 +12,19 @@ type MyPortfolioPresenterProps = {
         stockEA: number
     }[];
 };
-
 const MyPortfolioPresenter = ({
     toConstructPortfolio,
     getMyPortfolioList,
+    mylist,
     //toLeaderBoard,
     //toPublishList,
     //toStockPrice,
   }: MyPortfolioPresenterProps) => {
+      getMyPortfolioList();
     return (
+        
       <div className={"background"}>
-
+         
       </div>
     );
   };

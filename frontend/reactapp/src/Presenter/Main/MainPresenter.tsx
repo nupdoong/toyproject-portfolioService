@@ -5,17 +5,17 @@ import styled from "styled-components";
 
 type MainPresenterProps = {
     toMyPortfolio: Function;
+    toStockPrice: Function;
     //toLeaderBoard: Function;
     //toPublishList: Function;
-    //toStockPrice: Function;
   };
   
   
   const MainPresenter = ({
     toMyPortfolio,
+    toStockPrice
     //toLeaderBoard,
     //toPublishList,
-    //toStockPrice,
   }: MainPresenterProps) => {
     return (
       <div className={"background"}>
@@ -69,8 +69,8 @@ type MainPresenterProps = {
                   marginRight: "10px",
                 }}
                 onClick={(e) => {
-                  //toStockPrice();
-                  toMyPortfolio();
+                  toStockPrice();
+                 
                 }}
               >
                 주식 시세 조회
