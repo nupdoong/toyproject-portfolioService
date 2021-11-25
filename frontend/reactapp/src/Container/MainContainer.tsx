@@ -10,7 +10,7 @@ const MainContainer = () => {
     const history = useHistory();
 
     const toMyPortfolio = () => {
-        history.push("/signup");
+        history.push("/myportfolio");
     };
     const toStockPrice = () => {
         history.push("/stock");
