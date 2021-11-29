@@ -16,7 +16,7 @@ const LoginContainer = () => {
     console.log(document.cookie);
     axios
       .post(
-        Endpoint.portfolioServer+'/user/login',
+        Endpoint.portfolioServer + "/user/login",
         {
           username,
           password,
@@ -42,9 +42,14 @@ const LoginContainer = () => {
     history.push("/signup");
   };
 
-  const signUpByNaver = async (id: string, email: string,name : string, type: string) => {
+  const signUpByNaver = async (
+    id: string,
+    email: string,
+    name: string,
+    type: string
+  ) => {
     const response = await axios.post(
-        Endpoint.portfolioServer+'/oauth/signup/naver',
+      Endpoint.portfolioServer + "/oauth/signup/naver",
       {
         id,
         email,
@@ -56,7 +61,7 @@ const LoginContainer = () => {
     const data = response.data;
     if (data.response === "success") {
       alert("성공적으로 회원가입이 됐습니다.");
-    }else console.log(data);
+    } else console.log(data);
   };
 
   return (
