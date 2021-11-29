@@ -2,6 +2,7 @@ import * as React from "react";
 import "./MyPortfolioPresenter.scss";
 import { Button, Input, Form } from "antd";
 import Item from "antd/lib/list/Item";
+import { loadQuotesForStock } from "../../Container/stockapi/iex";
 type MyPortfolioPresenterProps = {
     toConstructPortfolio: Function
     mylist: {
@@ -11,6 +12,7 @@ type MyPortfolioPresenterProps = {
         stockEA: number
     }[];
     loadQuotesForStock: Function
+    
 };
 const MyPortfolioPresenter = ({
     toConstructPortfolio,
@@ -39,8 +41,8 @@ const MyPortfolioPresenter = ({
              <td>${portfolio.avgprice}</td>
              <td>{portfolio.stockEA}</td>
              <td>${portfolio.avgprice*portfolio.stockEA}</td>
-             <td>yet...</td>
-             <td>yet...</td>
+             <td>${loadQuotesForStock("aapl")}</td>
+             <td>{(((Number(loadQuotesForStock("aapl"))/portfolio.avgprice)-1)*100).toFixed(2)}%</td>
              </tr>
          ))}
          </tbody>

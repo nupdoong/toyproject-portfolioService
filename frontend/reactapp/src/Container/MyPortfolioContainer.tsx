@@ -23,10 +23,10 @@ const MyPortfolioContainer = () => {
         baseURL: "https://cloud.iexapis.com/v1"
       });
       
-    const loadQuotesForStock = async () => {
-        const res = await api.get(`/stock/aapl/quote?token=pk_94dfd7dd406f4845be436690da9a87a1`);
-        return res.data;
-      };
+    const loadQuotesForStock = async (ticker: string) => {
+        const res = await api.get(`/stock/${ticker}/quote?token=pk_94dfd7dd406f4845be436690da9a87a1`);
+        return res.data.close;
+    };
 
     useEffect(()=>{
         Axios.get(
